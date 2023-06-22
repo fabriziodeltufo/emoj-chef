@@ -1,0 +1,1 @@
+SIGN IN TO OPEN AI AND GENEREATE A NEW API_KEY , THEN ADD IT TO main.js (chatGPT Variables section) AND ENJOY IT !
