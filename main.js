@@ -4,7 +4,6 @@
 
 const OPENAI = {
     API_BASE_URL: 'https://api.openai.com/v1',
-    API_KEY: '',
     GPT_MODEL: 'gpt-3.5-turbo',
     CHAT_ENDPOINT: '/chat/completions',
     IMAGE_ENDPOINT: '/images/generations'
@@ -32,7 +31,12 @@ let bowl = []; // array with 3 selected ingredients.
 ingredients.forEach(function (element) {
 
     element.addEventListener('click', function () {
-        addIngredient(element.innerText);
+
+        if (API_KEY != '') {
+            addIngredient(element.innerText);
+        } else {
+            alert('API_KEY VARIABLE NOT DEFINED: \nYOU MUST REGISTER AN API KEY TO USE THIS WEB APP AND \nINSERT IT INTO A FILE NAMED config.js\n ie: const API_KEY = "value"; ');
+        }
     })
 
 })
@@ -108,7 +112,7 @@ async function makeRequest(endpoint, payload) {
         method: 'POST',
         headers: {
             'Content-type': 'Application/json',
-            'Authorization': `Bearer ${OPENAI.API_KEY}`,
+            'Authorization': `Bearer ${API_KEY}`,
         },
         body: JSON.stringify(payload)
     });
